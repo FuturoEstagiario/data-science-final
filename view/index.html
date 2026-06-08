@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartAnalytics — Mercado de Smartphones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ════════════════ SIDEBAR ════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">📱</div>
+      <div class="logo-text">
+        <span class="logo-title">SmartAnalytics</span>
+        <span class="logo-sub">Market Intelligence</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-label">Painéis</span>
+
+      <button class="nav-item active" data-target="sec-overview">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        Visão Geral
+      </button>
+
+      <button class="nav-item" data-target="sec-market">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        Mercado
+      </button>
+
+      <button class="nav-item" data-target="sec-pricing">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"/>
+          <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+        </svg>
+        Preços
+      </button>
+
+      <button class="nav-item" data-target="sec-catalog">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/>
+          <line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1"/>
+          <circle cx="3" cy="12" r="1"/><circle cx="3" cy="18" r="1"/>
+        </svg>
+        Catálogo
+      </button>
+
+      <span class="nav-label" style="margin-top:8px">Análise</span>
+
+      <button class="nav-item" data-target="sec-ml">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+        Machine Learning
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-badge">
+        <strong id="sidebar-acc">ML: — precisão</strong>
+        Random Forest · 5-fold CV
+      </div>
+    </div>
+  </aside>
+
+  <!-- ════════════════ CONTENT ════════════════ -->
+  <div class="content-wrapper">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1>Análise de Mercado — Smartphones</h1>
+        <p id="topbar-sub">Carregando dados...</p>
+      </div>
+      <div class="topbar-right">
+        <div class="taxa-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+          1 EUR = <span id="taxa-val">R$ —</span>
+        </div>
+        <span class="gerado-badge" id="gerado-badge">—</span>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- ── OVERVIEW ─────────────────────────── -->
+      <section id="sec-overview">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Visão Geral</div>
+            <div class="section-sub">Indicadores principais do mercado analisado</div>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card kpi-blue">
+            <div class="kpi-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
+            <div class="kpi-content">
+              <div class="kpi-label">Smartphones</div>
+              <div class="kpi-value" id="kpi-total">—</div>
+              <div class="kpi-sub" id="kpi-marcas">— marcas</div>
+            </div>
+          </div>
+
+          <div class="kpi-card kpi-green">
+            <div class="kpi-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+              </svg>
+            </div>
+            <div class="kpi-content">
+              <div class="kpi-label">Preço Médio</div>
+              <div class="kpi-value" id="kpi-avg">—</div>
+              <div class="kpi-sub" id="kpi-range">— a —</div>
+            </div>
+          </div>
+
+          <div class="kpi-card kpi-amber">
+            <div class="kpi-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <div class="kpi-content">
+              <div class="kpi-label">Marca Líder</div>
+              <div class="kpi-value" id="kpi-top-brand">—</div>
+              <div class="kpi-sub" id="kpi-top-count">— modelos</div>
+            </div>
+          </div>
+
+          <div class="kpi-card kpi-purple">
+            <div class="kpi-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+              </svg>
+            </div>
+            <div class="kpi-content">
+              <div class="kpi-label">Modelo ML</div>
+              <div class="kpi-value" id="kpi-ml">—%</div>
+              <div class="kpi-sub">Random Forest · CV 5-fold</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── MARKET ──────────────────────────── -->
+      <section id="sec-market">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Panorama do Mercado</div>
+            <div class="section-sub">Presença por marca e distribuição de categorias de preço</div>
+          </div>
+        </div>
+
+        <div class="charts-row col-2-1">
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Modelos por Marca — Top 10</div>
+              <div class="chart-subtitle">Número de modelos disponíveis no mercado por fabricante</div>
+            </div>
+            <div class="chart-body" style="min-height:300px">
+              <canvas id="chart-brands"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Categorias de Preço</div>
+              <div class="chart-subtitle">Distribuição Budget / Mid-range / Premium</div>
+            </div>
+            <div class="chart-body donut-wrap" style="min-height:220px">
+              <canvas id="chart-donut"></canvas>
+              <div class="donut-center">
+                <div class="donut-big" id="donut-total">—</div>
+                <div class="donut-small">modelos</div>
+              </div>
+            </div>
+            <div class="legend" id="donut-legend"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── PRICING ─────────────────────────── -->
+      <section id="sec-pricing">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Análise de Preços</div>
+            <div class="section-sub">Correlação entre especificações técnicas e valor de mercado em R$</div>
+          </div>
+        </div>
+
+        <div class="charts-row col-1-1">
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">RAM × Preço por Categoria</div>
+              <div class="chart-subtitle">Dispersão dos preços agrupada por segmento</div>
+            </div>
+            <div class="chart-body" style="min-height:260px">
+              <canvas id="chart-scatter"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Modelos × Preço Médio por Storage</div>
+              <div class="chart-subtitle">Impacto do armazenamento interno no valor de mercado</div>
+            </div>
+            <div class="chart-body" style="min-height:260px">
+              <canvas id="chart-storage"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ML ─────────────────────────────── -->
+      <section id="sec-ml">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Machine Learning — Random Forest</div>
+            <div class="section-sub">Classificação automática de faixa de preço por especificações técnicas</div>
+          </div>
+        </div>
+
+        <div class="charts-row col-1-1">
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Acurácia do Modelo</div>
+              <div class="chart-subtitle">Cross-Validation (5-fold) vs conjunto de teste holdout</div>
+            </div>
+            <div class="chart-body" style="min-height:220px">
+              <canvas id="chart-ml-acc"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Preço Médio por RAM</div>
+              <div class="chart-subtitle">Correlação entre memória RAM e faixa de preço</div>
+            </div>
+            <div class="chart-body" style="min-height:220px">
+              <canvas id="chart-ram"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CATALOG ─────────────────────────── -->
+      <section id="sec-catalog">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Catálogo de Smartphones</div>
+            <div class="section-sub">Base completa com filtros, busca e ordenação</div>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-toolbar">
+            <div class="toolbar-left">
+              <div class="search-wrap">
+                <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" id="search-input" placeholder="Pesquisar marca, modelo...">
+              </div>
+              <select class="filter-select" id="filter-category">
+                <option value="">Todas categorias</option>
+                <option value="Budget">Budget</option>
+                <option value="Mid-range">Mid-range</option>
+                <option value="Premium">Premium</option>
+              </select>
+              <select class="filter-select" id="filter-brand"><option value="">Todas marcas</option></select>
+              <select class="filter-select" id="filter-ram"><option value="">Toda RAM</option></select>
+            </div>
+            <span class="results-count" id="results-count">— resultados</span>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table" id="data-table">
+              <thead>
+                <tr>
+                  <th data-col="brand">Marca</th>
+                  <th data-col="model">Modelo</th>
+                  <th data-col="ram">RAM</th>
+                  <th data-col="storage">Storage</th>
+                  <th data-col="price" class="sort-desc">Preço R$</th>
+                  <th data-col="category">Categoria</th>
+                  <th data-col="color">Cor</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+                <tr><td colspan="7" class="table-empty">Carregando dados...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <span id="table-info">—</span>
+            <div class="pagination" id="pagination"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
