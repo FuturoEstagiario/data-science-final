@@ -10,7 +10,7 @@ const DASHBOARD_DATA = {
     "top_brand_count": 120,
     "acc_cv": 0.7875,
     "acc_teste": 0.82,
-    "gerado_em": "07/06/2026 23:22"
+    "gerado_em": "07/06/2026 23:44"
   },
   "by_brand": [
     {
